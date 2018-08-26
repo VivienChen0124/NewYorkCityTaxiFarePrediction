@@ -8,6 +8,7 @@ from sklearn.grid_search import GridSearchCV
 QUERY_TRAIN = """
               SELECT *
               FROM `cloud-training-demos.taxifare_kaggle.train`
+              LIMIT 10000000
 			  """
 QUERY_TEST = """
              SELECT *
