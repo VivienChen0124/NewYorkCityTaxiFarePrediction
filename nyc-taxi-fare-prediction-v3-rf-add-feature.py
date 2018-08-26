@@ -6,7 +6,7 @@ from sklearn.grid_search import GridSearchCV
 
 # dataset
 #print(os.listdir('../input'))
-train_df = pd.read_csv('../train.csv', nrows = 20_000_000)
+train_df = pd.read_csv('train.csv')
 train_df.dtypes
 
 # add new features
@@ -27,7 +27,7 @@ train_df['hour'] = pd.DatetimeIndex(train_df['pickup_datetime']).hour
 train_df.dtypes
 
 # testing set
-test_df = pd.read_csv('../test.csv')
+test_df = pd.read_csv('test.csv')
 test_df.dtypes
 
 add_travel_vector_features(test_df)
