@@ -74,7 +74,7 @@ model.add(Dense(1, init = 'uniform', activation = 'sigmoid'))
 
 model.compile(loss = 'mean_squared_error', optimizer = 'sgd', metrics = ['accuracy'])
 
-model.fit(train_X, train_y, nb_epoch = 150, batch_size = 10)
+model.fit(train_X, train_y, nb_epoch = 3, batch_size = 512)
 
 test_X = get_input_matrix(test_df)
 test_y = model.predict(test_X)
