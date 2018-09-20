@@ -4,6 +4,7 @@ import os
 from keras.models import Sequential
 from keras.layers import Dense
 from sklearn import preprocessing
+from keras import optimizers
 
 # dataset
 #print(os.listdir('../input'))
@@ -59,8 +60,11 @@ def get_input_matrix(df):
 
 # training set
 train_X = get_input_matrix(train_df)	
+
 # data normalization
-train_X = preprocessing.normalize(train_X)
+scaler = preprocessing.StandardScaler()
+train_X = scaler.fit_transform(train_X)
+
 train_y = np.array(train_df['fare_amount'])
 print(train_X.shape)
 print(train_y.shape)
@@ -71,17 +75,20 @@ np.random.seed(seed)
 
 model = Sequential()
 
-model.add(Dense(16, input_dim = 9, init = 'uniform', activation = 'relu'))
-model.add(Dense(8, init = 'uniform', activation = 'relu'))
+model.add(Dense(16, input_dim = 9, init = 'random_normal', activation = 'tanh'))
+model.add(Dense(16, init = 'uniform', activation = 'tanh'))
+model.add(Dense(8, init = 'uniform', activation = 'tanh'))
+model.add(Dense(4, init = 'uniform', activation = 'tanh'))
 model.add(Dense(1, init = 'uniform'))
 
-model.compile(loss = 'mean_squared_error', optimizer = 'sgd', metrics = ['accuracy'])
+adam = optimizers.Adam(lr=0.0001)
+model.compile(loss = 'mean_squared_error', optimizer = adam)
 
-model.fit(train_X, train_y, nb_epoch = 5, batch_size = 128)
+model.fit(train_X, train_y, nb_epoch = 10, batch_size = 32)
 
 test_X = get_input_matrix(test_df)
 # data normalization
-test_X = preprocessing.normalize(test_X)
+test_X = scaler.transform(test_X)
 test_y = model.predict(test_X)
 
 test_y = np.asarray(test_y).ravel()
