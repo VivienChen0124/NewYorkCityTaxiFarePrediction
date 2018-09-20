@@ -70,11 +70,11 @@ model = Sequential()
 
 model.add(Dense(16, input_dim = 9, init = 'uniform', activation = 'relu'))
 model.add(Dense(8, init = 'uniform', activation = 'relu'))
-model.add(Dense(1, init = 'uniform', activation = 'sigmoid'))
+model.add(Dense(1, init = 'uniform'))
 
 model.compile(loss = 'mean_squared_error', optimizer = 'sgd', metrics = ['accuracy'])
 
-model.fit(train_X, train_y, nb_epoch = 10, batch_size = 512)
+model.fit(train_X, train_y, nb_epoch = 5, batch_size = 512)
 
 test_X = get_input_matrix(test_df)
 test_y = model.predict(test_X)
