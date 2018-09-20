@@ -76,7 +76,7 @@ np.random.seed(seed)
 model = Sequential()
 
 model.add(Dense(16, input_dim = 9, init = 'random_normal', activation = 'tanh'))
-model.add(Dense(16, init = 'uniform', activation = 'tanh'))
+model.add(Dense(16, init = 'random_normal', activation = 'tanh'))
 model.add(Dense(8, init = 'uniform', activation = 'tanh'))
 model.add(Dense(4, init = 'uniform', activation = 'tanh'))
 model.add(Dense(1, init = 'uniform'))
@@ -84,7 +84,7 @@ model.add(Dense(1, init = 'uniform'))
 adam = optimizers.Adam(lr=0.0001)
 model.compile(loss = 'mean_squared_error', optimizer = adam)
 
-model.fit(train_X, train_y, nb_epoch = 10, batch_size = 32)
+model.fit(train_X, train_y, nb_epoch = 2, batch_size = 32)
 
 test_X = get_input_matrix(test_df)
 # data normalization
