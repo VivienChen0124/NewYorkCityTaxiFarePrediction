@@ -3,6 +3,7 @@ import pandas as pd
 import os
 from keras.models import Sequential
 from keras.layers import Dense
+from sklearn import preprocessing
 
 # dataset
 #print(os.listdir('../input'))
@@ -58,6 +59,8 @@ def get_input_matrix(df):
 
 # training set
 train_X = get_input_matrix(train_df)	
+# data normalization
+train_X = preprocessing.normalize(train_X)
 train_y = np.array(train_df['fare_amount'])
 print(train_X.shape)
 print(train_y.shape)
@@ -77,6 +80,8 @@ model.compile(loss = 'mean_squared_error', optimizer = 'sgd', metrics = ['accura
 model.fit(train_X, train_y, nb_epoch = 5, batch_size = 512)
 
 test_X = get_input_matrix(test_df)
+# data normalization
+test_X = preprocessing.normalize(test_X)
 test_y = model.predict(test_X)
 
 test_y = np.asarray(test_y).ravel()
