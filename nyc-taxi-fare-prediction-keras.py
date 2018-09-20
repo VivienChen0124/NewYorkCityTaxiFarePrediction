@@ -79,6 +79,8 @@ model.fit(train_X, train_y, nb_epoch = 10, batch_size = 512)
 test_X = get_input_matrix(test_df)
 test_y = model.predict(test_X)
 
+test_y = np.asarray(test_y).ravel()
+
 # submission file
 submission = pd.DataFrame({'key': test_df.key, 'fare_amount': test_y}, columns = ['key', 'fare_amount'])
 submission.to_csv('submission.csv', index = False)
