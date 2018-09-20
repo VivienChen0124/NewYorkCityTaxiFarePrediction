@@ -77,7 +77,7 @@ model.add(Dense(1, init = 'uniform'))
 
 model.compile(loss = 'mean_squared_error', optimizer = 'sgd', metrics = ['accuracy'])
 
-model.fit(train_X, train_y, nb_epoch = 5, batch_size = 512)
+model.fit(train_X, train_y, nb_epoch = 5, batch_size = 128)
 
 test_X = get_input_matrix(test_df)
 # data normalization
