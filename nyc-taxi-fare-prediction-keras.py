@@ -83,7 +83,7 @@ model.add(Dense(4, init = 'glorot_uniform', activation = 'tanh'))
 model.add(Dense(4, init = 'glorot_uniform', activation = 'tanh'))
 model.add(Dense(1, init = 'glorot_uniform'))
 
-adam = optimizers.Adam(lr=0.001)
+adam = optimizers.Adam(lr=0.005)
 model.compile(loss = 'mean_squared_error', optimizer = adam)
 
 model.fit(train_X, train_y, nb_epoch = 20, batch_size = 512)
