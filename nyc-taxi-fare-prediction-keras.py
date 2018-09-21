@@ -76,8 +76,6 @@ np.random.seed(seed)
 model = Sequential()
 
 model.add(Dense(16, input_dim = 9, init = 'glorot_uniform', activation = 'tanh'))
-model.add(Dense(16, init = 'glorot_uniform', activation = 'tanh'))
-model.add(Dense(8, init = 'glorot_uniform', activation = 'tanh'))
 model.add(Dense(8, init = 'glorot_uniform', activation = 'tanh'))
 model.add(Dense(4, init = 'glorot_uniform', activation = 'tanh'))
 model.add(Dense(4, init = 'glorot_uniform', activation = 'tanh'))
