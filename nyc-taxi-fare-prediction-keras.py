@@ -5,6 +5,7 @@ from keras.models import Sequential
 from keras.layers import Dense
 from sklearn import preprocessing
 from keras import optimizers
+from keras.callbacks import ReduceLROnPlateau
 
 # dataset
 #print(os.listdir('../input'))
