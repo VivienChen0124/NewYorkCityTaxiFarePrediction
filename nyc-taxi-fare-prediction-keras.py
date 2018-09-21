@@ -83,10 +83,10 @@ model.add(Dense(4, init = 'glorot_uniform', activation = 'tanh'))
 model.add(Dense(4, init = 'glorot_uniform', activation = 'tanh'))
 model.add(Dense(1, init = 'glorot_uniform'))
 
-adam = optimizers.Adam(lr=0.005)
+adam = optimizers.Adam(lr=0.0005)
 model.compile(loss = 'mean_squared_error', optimizer = adam)
 
-model.fit(train_X, train_y, nb_epoch = 20, batch_size = 512)
+model.fit(train_X, train_y, nb_epoch = 10, batch_size = 512)
 
 test_X = get_input_matrix(test_df)
 # data normalization
