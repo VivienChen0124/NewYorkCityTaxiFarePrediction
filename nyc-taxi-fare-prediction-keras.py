@@ -85,7 +85,7 @@ model.add(Dense(4, init = 'glorot_uniform', activation = 'tanh'))
 model.add(Dense(4, init = 'glorot_uniform', activation = 'tanh'))
 model.add(Dense(1, init = 'glorot_uniform'))
 
-adam = optimizers.Adam(lr=0.001)
+adam = optimizers.Adam(lr=0.0005)
 model.compile(loss = 'mean_squared_error', optimizer = adam)
 
 reduce_lr = ReduceLROnPlateau(monitor='loss', factor=0.5,patience=5, min_lr=0.0001)
