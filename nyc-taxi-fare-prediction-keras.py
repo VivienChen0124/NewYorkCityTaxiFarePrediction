@@ -63,8 +63,8 @@ def get_input_matrix(df):
 train_X = get_input_matrix(train_df)	
 
 # data normalization
-normalizer = preprocessing.Normalizer().fit(train_X)
-train_X = normalizer.transform(train_X)
+scaler = preprocessing.StandardScaler()
+train_X = scaler.fit_transform(train_X)
 
 train_y = np.array(train_df['fare_amount'])
 print(train_X.shape)
@@ -85,15 +85,15 @@ model.add(Dense(4, init = 'glorot_uniform', activation = 'tanh'))
 model.add(Dense(4, init = 'glorot_uniform', activation = 'tanh'))
 model.add(Dense(1, init = 'glorot_uniform'))
 
-adam = optimizers.Adam(lr=0.0005)
+adam = optimizers.Adam(lr=0.001)
 model.compile(loss = 'mean_squared_error', optimizer = adam)
 
 reduce_lr = ReduceLROnPlateau(monitor='loss', factor=0.5,patience=5, min_lr=0.0001)
-model.fit(train_X, train_y, nb_epoch = 40, batch_size = 512, callbacks = [reduce_lr], shuffle = True)
+model.fit(train_X, train_y, nb_epoch = 400, batch_size = 512, callbacks = [reduce_lr], shuffle = True)
 
 test_X = get_input_matrix(test_df)
 # data normalization
-test_X = normalizer.transform(test_X)
+test_X = scaler.transform(test_X)
 test_y = model.predict(test_X)
 
 test_y = np.asarray(test_y).ravel()
