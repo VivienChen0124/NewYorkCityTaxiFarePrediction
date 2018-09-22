@@ -63,8 +63,8 @@ def get_input_matrix(df):
 train_X = get_input_matrix(train_df)	
 
 # data normalization
-scaler = preprocessing.StandardScaler()
-train_X = scaler.fit_transform(train_X)
+normalizer = preprocessing.Normalizer().fit(train_X)
+train_X = normalizer.transform(train_X)
 
 train_y = np.array(train_df['fare_amount'])
 print(train_X.shape)
@@ -93,7 +93,7 @@ model.fit(train_X, train_y, nb_epoch = 40, batch_size = 512, callbacks = [reduce
 
 test_X = get_input_matrix(test_df)
 # data normalization
-test_X = scaler.transform(test_X)
+test_X = normalizer.transform(test_X)
 test_y = model.predict(test_X)
 
 test_y = np.asarray(test_y).ravel()
