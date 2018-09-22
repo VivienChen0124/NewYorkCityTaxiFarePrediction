@@ -76,10 +76,9 @@ np.random.seed(seed)
 
 model = Sequential()
 
-model.add(Dense(16, input_dim = 9, init = 'glorot_uniform', activation = 'tanh'))
-model.add(Dense(8, init = 'glorot_uniform', activation = 'tanh'))
-model.add(Dense(4, init = 'glorot_uniform', activation = 'tanh'))
-model.add(Dense(4, init = 'glorot_uniform', activation = 'tanh'))
+model.add(Dense(9, input_dim = 9, init = 'glorot_uniform', activation = 'tanh'))
+model.add(Dense(6, init = 'glorot_uniform', activation = 'tanh'))
+model.add(Dense(3, init = 'glorot_uniform', activation = 'tanh'))
 model.add(Dense(1, init = 'glorot_uniform'))
 
 adam = optimizers.Adam(lr=0.01)
