@@ -82,11 +82,11 @@ model.add(Dense(4, init = 'glorot_uniform', activation = 'tanh'))
 model.add(Dense(4, init = 'glorot_uniform', activation = 'tanh'))
 model.add(Dense(1, init = 'glorot_uniform'))
 
-adam = optimizers.Adam(lr=0.02)
+adam = optimizers.Adam(lr=0.01)
 model.compile(loss = 'mean_squared_error', optimizer = adam)
 
 reduce_lr = ReduceLROnPlateau(monitor='loss', factor=0.5,patience=5, min_lr=0.0001)
-model.fit(train_X, train_y, nb_epoch = 20, batch_size = 512, callbacks = [reduce_lr], shuffle = True)
+model.fit(train_X, train_y, nb_epoch = 40, batch_size = 512, callbacks = [reduce_lr], shuffle = True)
 
 test_X = get_input_matrix(test_df)
 # data normalization
